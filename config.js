@@ -1,0 +1,21 @@
+module.exports = {
+  appConfig: {
+    diagnosisName: "",
+    relationWithOwn: "",
+    currentAddress: "湖北省武汉市洪山区工大路",
+    remark: "无",
+    healthInfo: "正常",
+    isDiagnosis: 0,
+    isFever: 0,
+    isInSchool: "0",
+    isLeaveChengdu: 0,
+    isSymptom: "0",
+    temperature: "36°C以下",
+    province: "湖北省",
+    city: "武汉市",
+    county: "洪山区",
+    isReplace: "否",
+    noonTemperature: "36°C以下",
+    eveningTemperature: "36°C以下",
+  },
+};

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动打卡</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+        .container{
+            width: 300px;
+            margin: 0 auto;
+        }
+        .content{
+            
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <el-input class="content" v-model="sn" placeholder="请输入学号" ></el-input>
+            <el-input class="content" placeholder="请输入密码" v-model="idCard" show-password></el-input>
+            <el-button class="content" type="primary" v-on:click="getLogin" plain>{{status}}</el-button>
+        </div>
+      
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    sn: '',
+                    idCard: '',
+                    status:'登录'
+                }
+            },
+            mounted() {
+
+            },
+            methods: {
+                getLogin() {
+                    var that = this
+                    this.status = '解析中~'
+                    axios
+                        .get("/test", {
+                            params: {
+                                sn: this.sn,
+                                idCard: this.idCard
+                            }
+                        })
+                        .then(function (response) {
+                            console.log(response)
+                            if(response.data=="success"){
+                                that.status = '打卡成功'
+
+                            }
+                            else{
+                                that.status = response.data
+                            }
+                         
+
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+            }
+        })
+    </script>
+
+</body>
+
+</html>
